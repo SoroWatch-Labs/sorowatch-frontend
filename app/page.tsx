@@ -45,12 +45,12 @@ export default function DashboardPage() {
 
       {state === "error" && (
         <p role="alert">
-          Couldn't load events from the backend: {errorMessage}
+          Couldn&apos;t load events from the backend: {errorMessage}
         </p>
       )}
 
       {state === "empty" && (
-        <p>No flagged addresses yet. Once agents start flagging activity, it'll show up here.</p>
+        <p>No flagged addresses yet. Once agents start flagging activity, it&apos;ll show up here.</p>
       )}
 
       {state === "loaded" && (
