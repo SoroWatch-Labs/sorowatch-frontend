@@ -9,13 +9,14 @@ and supports connecting a Freighter wallet.
   (configurable via `NEXT_PUBLIC_BACKEND_URL`)
 - `app/page.tsx` — dashboard with real loading, error, and empty states
   (not just a happy-path render)
-- `lib/useEvents.ts` — keeps the events table fresh: refreshes every 15
-  seconds while the tab is visible (and immediately when you come back to
-  it), has a "Refresh now" button, and keeps showing the last good data if
-  a background refresh fails
 - `lib/useFreighterWallet.ts` + `components/WalletConnect.tsx` — real
   Freighter wallet connection using `@stellar/freighter-api`, with error
   handling for the extension not being installed
+- `components/SiteHeader.tsx` + `components/ThemeToggle.tsx` — site header
+  with a dark mode toggle. The choice is saved in `localStorage` and, if
+  nothing is saved, follows the system `prefers-color-scheme`. A small
+  script in `<head>` (`lib/theme.ts`) applies it before first paint so
+  there is no light flash. Colors are CSS variables in `app/globals.css`.
 
 ## Run
 

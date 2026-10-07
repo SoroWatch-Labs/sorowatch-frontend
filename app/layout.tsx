@@ -1,5 +1,7 @@
 import "./globals.css";
 import type { ReactNode } from "react";
+import { SiteHeader } from "@/components/SiteHeader";
+import { themeInitScript } from "@/lib/theme";
 
 export const metadata = {
   title: "SoroWatch",
@@ -8,8 +10,16 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    // suppressHydrationWarning: the init script adds the "dark" class to
+    // <html> before React hydrates.
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body>
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }
