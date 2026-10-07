@@ -1,38 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchEvents, FlagEvent } from "@/lib/api";
+import { useEvents } from "@/lib/useEvents";
 import { WalletConnect } from "@/components/WalletConnect";
 
-type LoadState = "loading" | "error" | "empty" | "loaded";
-
 export default function DashboardPage() {
-  const [events, setEvents] = useState<FlagEvent[]>([]);
-  const [state, setState] = useState<LoadState>("loading");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    async function load() {
-      setState("loading");
-      try {
-        const data = await fetchEvents();
-        if (cancelled) return;
-        setEvents(data);
-        setState(data.length === 0 ? "empty" : "loaded");
-      } catch (err) {
-        if (cancelled) return;
-        setErrorMessage(err instanceof Error ? err.message : "Unknown error");
-        setState("error");
-      }
-    }
-
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { events, state, errorMessage, lastUpdated, refreshing, refresh } =
+    useEvents();
 
   return (
     <main>
@@ -41,11 +14,29 @@ export default function DashboardPage() {
         <WalletConnect />
       </header>
 
+      <div>
+        <button onClick={refresh} disabled={refreshing}>
+          {refreshing ? "Refreshing..." : "Refresh now"}
+        </button>
+        <span aria-live="polite">
+          {lastUpdated
+            ? ` Last updated ${lastUpdated.toLocaleTimeString()} (auto-refreshes every 15s)`
+            : ""}
+        </span>
+      </div>
+
       {state === "loading" && <p>Loading flagged addresses...</p>}
 
       {state === "error" && (
         <p role="alert">
           Couldn&apos;t load events from the backend: {errorMessage}
+        </p>
+      )}
+
+      {state !== "error" && state !== "loading" && errorMessage && (
+        <p role="alert">
+          Couldn&apos;t refresh events ({errorMessage}). Showing the last
+          data we loaded.
         </p>
       )}
 
