@@ -17,6 +17,11 @@ and supports connecting a Freighter wallet.
   nothing is saved, follows the system `prefers-color-scheme`. A small
   script in `<head>` (`lib/theme.ts`) applies it before first paint so
   there is no light flash. Colors are CSS variables in `app/globals.css`.
+- `lib/filterEvents.ts` + the filter bar in `app/page.tsx` — search flagged
+  events by contract or topic text and filter by risk level (high 80+,
+  medium 50-79, low under 50). Events whose `value` is not a plain number
+  are grouped as "Unknown" instead of being hidden. The table shows
+  "Showing X of Y events" and a "Clear filters" button.
 
 ## Run
 
