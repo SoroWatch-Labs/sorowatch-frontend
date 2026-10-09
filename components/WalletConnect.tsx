@@ -7,7 +7,7 @@ export function WalletConnect() {
 
   if (address) {
     return (
-      <span>
+      <span role="status">
         Connected: {address.slice(0, 4)}...{address.slice(-4)}
       </span>
     );
@@ -18,7 +18,7 @@ export function WalletConnect() {
       <button onClick={connect} disabled={connecting}>
         {connecting ? "Connecting..." : "Connect Freighter Wallet"}
       </button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p role="alert">{error}</p>}
     </div>
   );
 }

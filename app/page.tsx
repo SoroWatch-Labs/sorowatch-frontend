@@ -15,7 +15,7 @@ export default function DashboardPage() {
   const filtering = query.trim() !== "" || level !== "all";
 
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <header>
         <h1>SoroWatch Dashboard</h1>
         <WalletConnect />
@@ -32,7 +32,9 @@ export default function DashboardPage() {
         </span>
       </div>
 
-      {state === "loading" && <p>Loading flagged addresses...</p>}
+      {state === "loading" && (
+        <p role="status">Loading flagged addresses...</p>
+      )}
 
       {state === "error" && (
         <p role="alert">
@@ -48,7 +50,7 @@ export default function DashboardPage() {
       )}
 
       {state === "empty" && (
-        <p>No flagged addresses yet. Once agents start flagging activity, it&apos;ll show up here.</p>
+        <p role="status">No flagged addresses yet. Once agents start flagging activity, it&apos;ll show up here.</p>
       )}
 
       {state === "loaded" && (
@@ -93,14 +95,17 @@ export default function DashboardPage() {
           </p>
 
           {visibleEvents.length === 0 ? (
-            <p>No events match these filters.</p>
+            <p role="status">No events match these filters.</p>
           ) : (
             <table>
+              <caption className="visually-hidden">
+                Flagged address events
+              </caption>
               <thead>
                 <tr>
-                  <th>Contract</th>
-                  <th>Topic</th>
-                  <th>Value</th>
+                  <th scope="col">Contract</th>
+                  <th scope="col">Topic</th>
+                  <th scope="col">Value</th>
                 </tr>
               </thead>
               <tbody>

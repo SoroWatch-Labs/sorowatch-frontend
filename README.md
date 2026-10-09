@@ -22,6 +22,12 @@ and supports connecting a Freighter wallet.
   medium 50-79, low under 50). Events whose `value` is not a plain number
   are grouped as "Unknown" instead of being hidden. The table shows
   "Showing X of Y events" and a "Clear filters" button.
+- Accessibility: a "Skip to main content" link is the first tab stop, the
+  events table has a screen-reader caption and `scope="col"` headers, loading,
+  empty and "no match" messages use `role="status"`, and wallet and load
+  errors use `role="alert"` in the theme's error colour. axe-core reports no
+  violations in light or dark mode, but automated tools catch only part of
+  accessibility, so manual keyboard and screen reader testing is still welcome.
 
 ## Run
 
