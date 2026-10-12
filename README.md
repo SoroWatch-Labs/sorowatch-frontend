@@ -22,6 +22,10 @@ and supports connecting a Freighter wallet.
   medium 50-79, low under 50). Events whose `value` is not a plain number
   are grouped as "Unknown" instead of being hidden. The table shows
   "Showing X of Y events" and a "Clear filters" button.
+- `components/RiskBadge.tsx` — a Risk column in the events table that shows
+  High, Medium, Low or Unknown as text with a colour, using the same
+  thresholds as the filter. Colours are theme variables, so light and dark
+  mode both keep readable contrast.
 - Accessibility: a "Skip to main content" link is the first tab stop, the
   events table has a screen-reader caption and `scope="col"` headers, loading,
   empty and "no match" messages use `role="status"`, and wallet and load

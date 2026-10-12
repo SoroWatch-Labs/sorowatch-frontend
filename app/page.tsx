@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { filterEvents, LevelFilter } from "@/lib/filterEvents";
 import { useEvents } from "@/lib/useEvents";
+import { RiskBadge } from "@/components/RiskBadge";
 import { WalletConnect } from "@/components/WalletConnect";
 
 export default function DashboardPage() {
@@ -106,6 +107,7 @@ export default function DashboardPage() {
                   <th scope="col">Contract</th>
                   <th scope="col">Topic</th>
                   <th scope="col">Value</th>
+                  <th scope="col">Risk</th>
                 </tr>
               </thead>
               <tbody>
@@ -114,6 +116,9 @@ export default function DashboardPage() {
                     <td>{event.contractId ?? "—"}</td>
                     <td>{event.topic?.join(", ") ?? "—"}</td>
                     <td>{event.value ?? "—"}</td>
+                    <td>
+                      <RiskBadge event={event} />
+                    </td>
                   </tr>
                 ))}
               </tbody>

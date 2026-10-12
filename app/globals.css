@@ -11,6 +11,12 @@
   --border: #cbd5e1;
   --accent: #4338ca;
   --danger: #b91c1c;
+  --risk-high-bg: #fee2e2;
+  --risk-high-fg: #7f1d1d;
+  --risk-medium-bg: #fef3c7;
+  --risk-medium-fg: #78350f;
+  --risk-low-bg: #dcfce7;
+  --risk-low-fg: #14532d;
   color-scheme: light;
 }
 
@@ -22,6 +28,12 @@
   --border: #2a3550;
   --accent: #a5b4fc;
   --danger: #fca5a5;
+  --risk-high-bg: #4c1d1d;
+  --risk-high-fg: #fecaca;
+  --risk-medium-bg: #4a3512;
+  --risk-medium-fg: #fde68a;
+  --risk-low-bg: #153524;
+  --risk-low-fg: #bbf7d0;
   color-scheme: dark;
 }
 
@@ -205,4 +217,26 @@
   background: var(--accent);
   color: var(--bg);
   border-color: var(--accent);
+}
+.risk-badge {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--fg);
+}
+.risk-badge--high {
+  background: var(--risk-high-bg);
+  color: var(--risk-high-fg);
+}
+.risk-badge--medium {
+  background: var(--risk-medium-bg);
+  color: var(--risk-medium-fg);
+}
+.risk-badge--low {
+  background: var(--risk-low-bg);
+  color: var(--risk-low-fg);
 }
